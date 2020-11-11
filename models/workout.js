@@ -41,11 +41,11 @@ const workoutSchema = new Schema({
 
     }, ]
 
-    // virtuals for adding total duration of workout
-    // reduce method flattens the durations into one single value
+
+
+    // Virtuals for adding total duration of the added workout and make duration a single value
 
 }, { toJSON: { virtuals: true } });
-
 workoutSchema.virtual("totalDuration").get(function() {
     return this.exercises.reduce((total, exercise) => {
         return total + exercise.duration
