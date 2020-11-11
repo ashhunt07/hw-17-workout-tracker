@@ -10,15 +10,18 @@ app.use(logger("dev"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
 });
 
 // Require API Routes
-require("./routes/htmlroutes")(app);
-require("./routes/apiroutes")(app);
+require("./routes/htmlroutes.js")(app);
+require("./routes/apiroutes.js")(app);
 
 
 app.listen(PORT, () => {
